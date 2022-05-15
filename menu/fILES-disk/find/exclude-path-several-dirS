@@ -1,0 +1,2 @@
+#donno why -prune -o -smth, I haven't tryed without it.
+find / \( -path /proc -o -path /var \) -prune -o -type f

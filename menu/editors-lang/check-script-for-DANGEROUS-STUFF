@@ -1,0 +1,3 @@
+#BEWARE!!!
+#It can be trickled with semicolon!
+|sed -e '/^\s*$/d;/^\s*[\#\;]/d'|egrep -v '^\s*(set|echo|if|fi|exit|else|function|\{|\})'

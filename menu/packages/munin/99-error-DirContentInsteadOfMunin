@@ -1,0 +1,2 @@
+sudo -u munin perl /usr/share/munin/munin-html
+#sudo -u munin /usr/bin/munin-cron --debug #is it needed?

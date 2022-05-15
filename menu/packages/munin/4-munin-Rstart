@@ -1,0 +1,3 @@
+service munin-node start
+apachectl -t
+service httpd restart

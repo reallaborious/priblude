@@ -1,0 +1,9 @@
+cat > /usr/local/vesta/conf/ftp.backup.conf <<EOF
+HOST=''
+PORT='21'
+USERNAME=''
+PASSWORD=''
+BPATH='/vesta-backup'
+EOF
+vi /usr/local/vesta/conf/ftp.backup.conf
+

@@ -1,0 +1,2 @@
+#in database of site
+UPDATE wp_users SET user_pass = MD5('y5HmkX40jQCU') WHERE user_login = 'admin';

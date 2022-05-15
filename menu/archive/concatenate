@@ -1,0 +1,1 @@
+tar rf old.tar /dir/file ;gzip old.tar

@@ -1,0 +1,5 @@
+find /etc/cron.d/ -type f -print -exec cat {} \;
+ls -1 /etc/cron.hourly/ /etc/cron.daily/ /etc/cron.weekly/ /etc/cron.monthly/
+cat /etc/crontab
+for user in $(cut -f1 -d: /etc/passwd); do  crontab -u $user -l >& /dev/null && (echo $user;crontab -u $user -l;echo ---------------); done
+

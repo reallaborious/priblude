@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^oLd$ [OR]
+  RewriteCond %{HTTP_HOST} ^www.oLd$
+  RewriteRule (.*)$ http://nEw/$1 [R=301,L]
+</IfModule>

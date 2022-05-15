@@ -1,0 +1,7 @@
+apachectl -S 2>/dev/null|grep -v 'VirtualHost configuration:'
+find $([ -d /var/www/httpd-logs/ ] && echo "/var/www/httpd-logs/" || echo "/var/log/httpd/domains/") -iname "*.log" ! -iname "*.error.log" -mmin -2 -exec bash -c '[ $(wc -l {}|egrep -o "^\s*[0-9]+") -le 1000 ]&&exit;echo -n {}\ ; tail -n1000 {} | head -n1' \; |sort -k5|egrep --color=always '\[.*\]';date
+df -h|grep --color=always -P '((9\d|100)%\s+(\/\w+)+$|$)';df -i|grep --color=always -P '(9\d|100)%\s+(\/\w+)+$';
+find /etc/ -maxdepth 1 \( -name "*-release" -o -name debian_version \) -type f -exec egrep -H --color=always '[0-9](\.[0-9])*' {} \;;free -m
+(tac /var/log/messages /var/log/syslog 2>/dev/null|head -n 10000;tac /var/log/syslog 2>/dev/null |head -n 10000)|grep -m4 --color=always 'Out of mem'; [ $? -eq 0 ] && ( tac /var/log/messages|grep -m1 -A1000 'Out of mem'|perl -lne 'exit if /rss\ +nr_ptes\ +swapents\ +oom_score_adj\ +name$/;s/(?<=\[)\s+//g;@_=split;if(@_[5]=~/\[\d+\]/ and @_[13]=~/(^httpd$|^php$|^php-fpm$)/) { $s+=@_[8];++$h if @_[13]=~/^httpd$/;++$p if @_[13]=~/^php$/;++$fpm if @_[13]=~/^php-fpm$/;print } ;END {print int($s/1024)."Mb httpd:".$h." php:".$p." php-fpm:".$fpm}';grep -nPr '^\s*(MaxClients|FcgidMaxProcesses|MaxRequestWorkers)\s+\d+' --include *.conf /etc/apache2/ /etc/httpd/ 2>/dev/null;httpd -v 2&>/dev/null || apache2 -v )
+uptime;grep model\ name /proc/cpuinfo|uniq;grep -c processor /proc/cpuinfo
+

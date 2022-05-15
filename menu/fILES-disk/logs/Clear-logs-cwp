@@ -1,0 +1,2 @@
+find /usr/local/apache/logs |awk '{print "cat /dev/null > "$1}'|sh
+

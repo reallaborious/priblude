@@ -1,0 +1,2 @@
+[ -f /usr/bin/mail ] || yum install -y mailx
+echo "test 1" |mail -v -s test1 -r _ _

@@ -1,0 +1,2 @@
+ps -o lstart,pid,ppid,user,cmd --sort etime ax|grep -E '[^i]httpd'
+

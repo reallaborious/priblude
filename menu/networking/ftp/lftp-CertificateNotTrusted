@@ -1,0 +1,1 @@
+lftp -u user,pass 1.1.1.1 -e "set ftp:ssl-allow no"

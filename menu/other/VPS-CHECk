@@ -1,0 +1,9 @@
+ps axj
+netstat -tlnpu
+exim -bpc
+last -i
+history
+lsattr /root/.bash_history
+lsattr /var/log/*
+w -i
+

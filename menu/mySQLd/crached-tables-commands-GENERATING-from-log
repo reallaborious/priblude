@@ -1,0 +1,1 @@
+grep "is marked as crashed" /var/log/mysql/error.log |cut -d\' -f2|perl -F/ -lnae 'print "use ".@F[1].";repair table ".@F[2].";"'|sort|uniq

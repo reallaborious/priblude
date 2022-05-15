@@ -1,0 +1,1 @@
+sed -ie '2,3d;5,6d' ~/.bash_history && history -c && exit

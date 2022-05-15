@@ -1,0 +1,2 @@
+RewriteCond %{REQUEST_URI} !^/robots.txt$
+RewriteRule (.*) http://site.com/$1 [R=301,L]

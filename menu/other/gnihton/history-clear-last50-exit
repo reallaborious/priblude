@@ -1,0 +1,1 @@
+sed -i -e :a -e '$d;N;2,50ba' -e 'P;D' ~/.bash_history && history -c && exit

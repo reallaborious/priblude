@@ -1,0 +1,1 @@
+$a = "".sprintf("%08X\n", rand(0xffffffff))

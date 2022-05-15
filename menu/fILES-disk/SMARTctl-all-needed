@@ -1,0 +1,2 @@
+smartctl -a /dev/sda | grep -E 'Reallocated_Sector_Ct|Media_Wearout_Indicator|Power_On_Hours|Temperature_Celsius|Offline_Uncorrectable|Current_Pending_Sector|Serial|Sector Size|Total_LBAs_Written|Device Model'
+

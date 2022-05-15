@@ -1,0 +1,2 @@
+wget http://li.nux.ro/download/nux/dextop/el7/x86_64//grepcidr-2.0-1.el7.nux.x86_64.rpm;yum install -y grepcidr-2.0-1.el7.nux.x86_64.rpm
+

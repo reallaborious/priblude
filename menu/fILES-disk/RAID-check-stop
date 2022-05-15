@@ -1,0 +1,1 @@
+echo none > /sys/block/md0/md/sync_action #to pause, use frozen (unchecked)

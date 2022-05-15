@@ -1,0 +1,1 @@
+mysqldump  --add-drop-table bAsE | gzip > $(date +mysql_dumpd.sql.%Y%m%d.gz)

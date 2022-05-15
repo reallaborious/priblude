@@ -1,0 +1,1 @@
+INSERT INTO your_table (ID, ISO3, TEXT) SELECT ID, 'JPN', TEXT FROM your_table WHERE ID IN ( list_of_ id's )

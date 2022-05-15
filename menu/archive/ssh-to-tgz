@@ -1,0 +1,1 @@
+ssh user@box tar czvf - /dir1/ > $(date +backup.%Y%m%d.%H%M%S.gz)

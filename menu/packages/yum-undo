@@ -1,0 +1,2 @@
+yum history|head
+yum history undo _

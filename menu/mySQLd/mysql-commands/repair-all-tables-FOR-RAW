@@ -1,0 +1,2 @@
+select concat('repair table ', table_name, ';') from information_schema.tables 
+where table_schema='mydatabase';

@@ -1,0 +1,1 @@
+unzip -p file.zip path_in_archive > file

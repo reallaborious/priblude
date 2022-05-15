@@ -1,0 +1,5 @@
+AuthName "Authentication"
+AuthType Basic
+AuthUserFile .htpasswd
+require valid-user
+#htpasswd -cm .htpasswd admin

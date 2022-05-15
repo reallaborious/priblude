@@ -1,0 +1,2 @@
+tail -n 1000 /var/log/nginx/access.log | cut -d " " -f1 | sort | uniq -c | sort -n | awk '$1 > 10'|tail -n 30;tail -n 1000 /var/log/nginx/access.log | head -n1;date
+

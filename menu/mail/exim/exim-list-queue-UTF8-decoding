@@ -1,0 +1,1 @@
+exim -bp|egrep -o '([0-9a-zA-Z]{6}\-){2}[0-9a-zA-Z]{2}'|while read i;do m=$(exim -Mvh $i|grep Subject);echo $m|grep -q '=?utf-8?';[ $? -eq 0 ] && (echo -n $i;echo $m|python -c "from email.header import decode_header;import sys;print(' '+decode_header(sys.stdin.read())[1][0].decode('utf-8'))") || echo "$i $m";done

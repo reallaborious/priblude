@@ -1,0 +1,2 @@
+watch -n1 "echo 'SELECT time,command,info FROM INFORMATION_SCHEMA.PROCESSLIST order by Time DESC;' | mysql" 
+

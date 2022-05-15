@@ -1,0 +1,1 @@
+ftpasswd --passwd --file=/etc/proftpd/ftpd.passwd --name=tester --uid=33 --gid=33 --home=/var/www/test.ru --shell=/bin/false

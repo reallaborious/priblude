@@ -1,0 +1,2 @@
+wget https://atoptool.nl/download/atop-2.3.0-1.el6.x86_64.rpm; yum -y install atop-2.3.0-1.el6.x86_64.rpm ;sed -i 's/INTERVAL=600/INTERVAL=60/' /etc/atop/45atoppm  /usr/share/atop/atop.daily /etc/sysconfig/atop /etc/init.d/atop; chkconfig atop on;service atop restart; atop 1
+

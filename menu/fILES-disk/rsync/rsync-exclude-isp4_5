@@ -1,0 +1,1 @@
+rsync -avP --exclude='/var/www/http-logs' --exclude='/var/www/error' --exclude='/var/www/cgi-bin' --exclude='/var/www/html' --exclude='/var/www/nginx-logs' --exclude='/var/www/php-bin' --exclude='/var/www/awstats' --exclude='/var/www/*/data/logs' --exclude='/var/www/*/data/tmp' --exclude='/var/www/*/data/php-bin' --exclude='/var/www/*/data/mod-tmp' :/var/www/* /var/www/

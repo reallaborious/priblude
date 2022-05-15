@@ -1,0 +1,2 @@
+screen -dm yum -y install vim nload net-tools
+

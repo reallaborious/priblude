@@ -1,0 +1,1 @@
+openssl rsa -noout -modulus -in .key| openssl md5

@@ -1,0 +1,2 @@
+#ddos - name of the list
+ipset create ddos iphash

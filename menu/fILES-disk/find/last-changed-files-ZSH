@@ -1,0 +1,1 @@
+find / -type f -exec ls -clD "%Y-%m-%d %H-%M-%S" {} \; |  awk '{print $6" "$7" "$8}' | sort -r | tail -n 40

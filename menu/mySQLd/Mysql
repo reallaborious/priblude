@@ -1,0 +1,2 @@
+mysql -u$([ -d /usr/local/mgr5/ ] && echo coremgr || echo root) -p$(grep -shoP '(?<=\sPassword[\ ]).*$' /usr/local/ispmgr/etc/ispmgr.conf || grep -shoP '(?<=[pP]assword\ \=\ ).*$'  /usr/local/mgr5/etc/my.cnf || grep -shoP "(?<=\sPASSWORD\=\')\w+"  /usr/local/*/conf/mysql.conf)
+

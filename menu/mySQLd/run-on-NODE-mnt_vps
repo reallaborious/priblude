@@ -1,0 +1,1 @@
+mkdir /mnt/vps/var/run/mariadb; chmod 777 /mnt/vps/var/run/mariadb; chroot /mnt/vps/ /usr/bin/mysqld_safe --basedir=/usr &

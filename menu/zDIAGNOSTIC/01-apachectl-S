@@ -1,0 +1,1 @@
+apachectl -S 2>/dev/null|grep -v 'VirtualHost configuration:'

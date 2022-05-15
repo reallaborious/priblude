@@ -1,0 +1,2 @@
+#for new bot and ID of bot - BotFather. To know chat ID - proxychains curl https://api.telegram.org/bot859473237:AAEuAf51pajkUMcWqXLHEcWcqdcKdqK6-gs/getUpdates (there should be new messages).
+while [ $(ps ax|egrep -q '^\s*PID.*COMMAND$';echo $?) -eq 0 ] ;do sleep 1;done;curl -s X POST "https://api.telegram.org/bot859473237:AAEuAf51pajkUMcWqXLHEcWcqdcKdqK6-gs/sendMessage?chat_id=430748208&text=ended"

@@ -1,0 +1,1 @@
+select concat('use ', table_schema, '; repair table ', table_name, ';') from information_schema.tables ;

@@ -1,0 +1,1 @@
+ nginx -V 2>&1|grep --color=always http_v2

@@ -1,0 +1,1 @@
+fail2ban-client set YOURJAILNAMEHERE unbanip IPADDRESSHERE #fail2ban-client status

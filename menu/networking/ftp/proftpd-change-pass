@@ -1,0 +1,1 @@
+ftpasswd --passwd --name=tester --change-password --file=/etc/proftpd/ftpd.passwd

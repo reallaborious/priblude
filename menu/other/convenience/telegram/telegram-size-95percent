@@ -1,0 +1,1 @@
+while [ $(df -h /dev/simfs |sed 1d|awk '{print $5}'|grep -oP '\d+') -lt 95 ] ;do sleep 1;done;curl -s X POST "https://api.telegram.org/bot859473237:AAEuAf51pajkUMcWqXLHEcWcqdcKdqK6-gs/sendMessage?chat_id=430748208&text=resoSIZE95%"

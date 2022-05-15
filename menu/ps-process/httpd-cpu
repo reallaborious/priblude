@@ -1,0 +1,2 @@
+ps --sort -%cpu o %cpu,etime,pid,ppid,cmd ax| grep -E '([^i]httpd|php)' |grep -vE '(grep)' | awk '{s+= $1; c+=1; print $0;} END {print "total: "s " %, count: "c}'
+

@@ -1,0 +1,1 @@
+perl -e 'sub f{foreach (glob(@_[0])){open(my $h,$_) or next;my $fr=@_[1]."#from ".$_."\n";print "\n".$fr;while(<$h>){my @a=split;if(@a[0]=~/^[iI]nclude$/){@a[1]=~s/\;$//;f(@a[1],$fr)}else{print}}close $h;$fr=~s/from/end/g;print $fr}};f("/etc/nginx/nginx.conf")' > tem

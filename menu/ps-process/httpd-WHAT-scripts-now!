@@ -1,0 +1,2 @@
+ps aux --sort -%cpu|grep -E '([^i]httpd|php)' |head -n20 |while read i;do echo $i;echo $i|awk '{print $2}'|xargs lsof -p|perl -alne 'print $F[8] if $F[8]=~/\.php$/ or $F[3]=~"cwd"';done
+

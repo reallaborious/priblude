@@ -1,0 +1,1 @@
+ps -o start_time,etime,pid,ppid,user,cmd ax|grep 

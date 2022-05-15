@@ -1,0 +1,7 @@
+#DO NOT FORGOT TO TEST IT with another ssh-session!!! Checked for ubuntu16.04
+cat > /etc/profile <<EOF
+
+if [ -f /etc/bash_completion ]; then
+ . /etc/bash_completion
+fi
+EOF

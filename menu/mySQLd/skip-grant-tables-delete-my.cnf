@@ -1,0 +1,1 @@
+sed -i '/skip-grant-tables/d' /etc/mysql/my.cnf /etc/my.cnf

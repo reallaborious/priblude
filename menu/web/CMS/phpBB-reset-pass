@@ -1,0 +1,1 @@
+update phpbb_users set user_password = MD5('pAsWoRd') WHERE username='admin';

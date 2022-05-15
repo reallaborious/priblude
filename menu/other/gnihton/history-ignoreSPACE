@@ -1,0 +1,3 @@
+HISTCONTROL=ignoreboth
+ echo ok
+

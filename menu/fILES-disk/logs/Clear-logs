@@ -1,0 +1,3 @@
+find /var/log|awk '{print "cat /dev/null > "$1}'|sh
+find /var/www/httpd-logs|awk '{print "cat /dev/null > "$1}'|sh
+

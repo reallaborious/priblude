@@ -1,0 +1,1 @@
+curl -s -X POST "https://api.telegram.org/bot859473237:AAEuAf51pajkUMcWqXLHEcWcqdcKdqK6-gs/sendMessage" -d chat_id=430748208 -d text=done

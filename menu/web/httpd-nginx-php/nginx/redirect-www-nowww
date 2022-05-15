@@ -1,0 +1,4 @@
+server {
+    server_name www._;
+    return 301 $scheme://_$request_uri;
+}

@@ -1,0 +1,4 @@
+SetEnvIF X-Forwarded-For ReGeXpIP DenyIP
+Order allow,deny
+Deny from env=DenyIP
+Allow from all

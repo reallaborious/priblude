@@ -1,0 +1,1 @@
+tar zcvf - file | ssh WhErE "cat > pa/th"

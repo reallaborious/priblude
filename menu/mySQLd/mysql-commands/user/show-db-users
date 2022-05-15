@@ -1,0 +1,2 @@
+select host, db, user, Grant_priv from mysql.db;
+

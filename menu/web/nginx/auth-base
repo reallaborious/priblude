@@ -1,0 +1,3 @@
+auth_basic           “password?”;
+auth_basic_user_file /etc/apache2/.htpasswd; 
+#htpasswd -cm /etc/apache2/.htpasswd admin

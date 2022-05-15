@@ -1,0 +1,2 @@
+#to correct add ssl_trusted_certificate intermediate.crt+root.crt (chain)
+echo QUIT | openssl s_client -connect SiTe:443 -status 2> /dev/null | grep -A 17 'OCSP response:' | grep -B7 'Next Update'

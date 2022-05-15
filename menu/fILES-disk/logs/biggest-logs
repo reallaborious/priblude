@@ -1,0 +1,2 @@
+find /var/www/*/data/logs/ /var/log/ /var/www/httpd-logs/ -mount -type f -ls 2> /dev/null | sort -nk7 | tail -10 | awk '{printf "%10d MB\t%s\n",($7/1024)/1024,$NF}'
+

@@ -1,0 +1,1 @@
+ssh -R 55554:localhost:44445 RemoteHost #nc -l localhost 44445 on localhost, nc localhost 55554 on remote

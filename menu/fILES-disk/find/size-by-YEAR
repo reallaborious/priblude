@@ -1,0 +1,1 @@
+TIME_STYLE=long-iso find /var/www/ -type f -exec ls -cl {} \; |awk '{print $6" "$7" "$5" "$8}' |perl -alne '@_=split /-/,@F[0];if($y!=@_[0]){$s/=1024;print "$y $s"."KiB";$s=0;$y=@_[0]};$s+=$F[2]}{$s/=1024;print "$y $s"."KiB"'

@@ -1,0 +1,3 @@
+grep -nPr '^\s*(MaxClients|FcgidMaxProcesses|MaxRequestWorkers)\s+\d+' --include *.conf /etc/apache2/ /etc/httpd/
+httpd -v 2&>/dev/null || apache2 -v
+

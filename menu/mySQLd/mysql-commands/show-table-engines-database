@@ -1,0 +1,1 @@
+SELECT table_name,engine FROM INFORMATION_SCHEMA.TABLES WHERE table_schema='DaTaBaSe';

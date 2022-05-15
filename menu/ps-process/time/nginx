@@ -1,0 +1,2 @@
+ps -o etime,pid,ppid,user,cmd ax|grep nginx
+

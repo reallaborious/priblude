@@ -1,0 +1,1 @@
+iptables -I INPUT -s /32 -p tcp -m tcp -m multiport --dports 20,21,50000:50400 -j ACCEPT

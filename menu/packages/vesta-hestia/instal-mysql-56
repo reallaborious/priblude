@@ -1,0 +1,3 @@
+yum install https://repo.mysql.com//mysql80-community-release-el7-3.noarch.rpm
+#it can't downgrade, only upgrade from oldest versions, DO NOT FORGET BACKUP
+yum --disablerepo=mysql80-community --enablerepo=mysql56-community install mysql

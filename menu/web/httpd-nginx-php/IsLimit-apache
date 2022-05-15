@@ -1,0 +1,2 @@
+find /etc/httpd/ /etc/apache2/ -name "*.conf" -exec grep -HnP '^\s*(MaxClients|FcgidMaxProcesses)\s+\d' {} \; 2>/dev/null
+

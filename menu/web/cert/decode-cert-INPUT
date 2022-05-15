@@ -1,0 +1,2 @@
+openssl x509 -text -noout |egrep '(^\s*(CA\ )?Issuer|^\s*Not Before|^\s*Not After|^\s*DNS:)'
+

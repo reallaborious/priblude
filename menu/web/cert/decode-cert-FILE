@@ -1,0 +1,1 @@
+function Im9ohg6e { openssl x509 -text -noout -in $1 | egrep '(^\s*(CA\ )?Issuer|^\s*Not Before|^\s*Not After|^\s*DNS:)'; };Im9ohg6e 

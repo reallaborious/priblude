@@ -1,0 +1,1 @@
+iptables -I INPUT -m set --match-set ddos -j DROP

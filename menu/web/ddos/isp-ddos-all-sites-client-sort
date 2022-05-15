@@ -1,0 +1,2 @@
+ail -n 1000 /var/www/httpd-logs/*.access.log | cut -d " " -f11- | sort | uniq -c | sort -n | awk '$1 > 10'|tail -n 30;date
+

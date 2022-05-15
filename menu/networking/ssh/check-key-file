@@ -1,0 +1,2 @@
+#it'll generate publick key
+ssh-keygen -y -e -f keyfile

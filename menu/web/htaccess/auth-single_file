@@ -1,0 +1,7 @@
+<FilesMatch "admin.php">
+ AuthName "Member Only"
+ AuthType Basic
+ AuthUserFile /fullPathDotHtpasswd
+ require valid-user
+</FilesMatch>
+#htpasswd -cm .htpasswd admin

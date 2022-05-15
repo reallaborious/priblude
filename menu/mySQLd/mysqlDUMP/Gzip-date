@@ -1,0 +1,1 @@
+mysqldump -u -p --verbose --add-drop-table --all-databases | gzip > $(date +mysql_dumpd.sql.%Y%m%d.%H%M%S.gz)

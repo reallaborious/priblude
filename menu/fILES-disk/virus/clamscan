@@ -1,0 +1,1 @@
+clamscan -ril $(date +clamscan_%Y%m%d.%H%M%S.log) /var/www/

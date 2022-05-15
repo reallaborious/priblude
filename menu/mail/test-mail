@@ -1,0 +1,1 @@
+(echo "From: "; echo "To: "; echo "Reply-To: fRoM"; echo "Subject: test 1"; echo ""; echo "Test mail content")|exim -v -t -i -f fr@m

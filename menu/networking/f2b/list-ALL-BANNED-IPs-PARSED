@@ -1,0 +1,1 @@
+fail2ban-client status|perl -ne 'next if ! /\sJail list:\s/;s/^.*\slist:\s+//;chomp;@_=split /,\s+/;print `for i in \$(fail2ban-client status $_ | grep -oP \x27(?<=Banned IP list:).*\x27);do echo $_ \$i;done` foreach @_'

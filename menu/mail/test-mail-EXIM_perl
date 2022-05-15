@@ -1,0 +1,1 @@
+perl -se 'print `(echo "From: $from"; echo "To: $to"; echo "Reply-To: $from"; echo "Subject: test 1"; echo ""; echo "Test mail content")|exim -v -t -i -f $from`' -- -from= -to=

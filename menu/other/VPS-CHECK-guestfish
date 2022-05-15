@@ -1,0 +1,9 @@
+ll /var/log/
+cat /etc/crontab 
+cat /root/.bash_history
+/home/admin/.bash_history
+ll /usr/local
+grep "Accept|success" /var/log/auth.log.1 extended:true
+grep "Accept|success" /var/log/auth.log extended:true
+grep "Accept|success" /var/log/secure extended:true
+

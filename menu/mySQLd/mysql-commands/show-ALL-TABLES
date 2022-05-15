@@ -1,0 +1,1 @@
+select table_schema, table_name, engine from information_schema.tables;

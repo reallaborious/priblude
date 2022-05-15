@@ -1,0 +1,1 @@
+pt-query-digest --since "`date +%Y-%m-%d\ 00:00:00`" --limit 5 --outliers "" /var/log/mysql/slow.log

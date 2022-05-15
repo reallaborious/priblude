@@ -1,0 +1,1 @@
+echo|openssl s_client -connect :443 2>&1 |perl -0ne '/-----BEGIN[\S\s]*-----END CERTIFICATE-----/gms;print $&."\n"'|tee /dev/stderr|openssl x509 -text -noout |egrep '(^\s*(CA\ )?Issuer|^\s*Not Before|^\s*Not After|^\s*DNS:|Verification error)'

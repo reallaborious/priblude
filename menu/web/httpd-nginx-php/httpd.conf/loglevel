@@ -1,0 +1,4 @@
+LogLevel debug
+#context: server config, virtual host, directory
+#Default: warn
+#can be more detailed than debug: trace1 - trace8

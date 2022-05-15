@@ -1,0 +1,1 @@
+systemctl status systemd-journald #journalctl -t systemd-journald

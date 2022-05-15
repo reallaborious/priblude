@@ -1,0 +1,14 @@
+yum install nano epel-release -y
+cat > /etc/yum.repos.d/mariadb.repo <<EOF
+# MariaDB 10.2 CentOS repository list - created 2018-02-15 08:21 UTC
+# http://downloads.mariadb.org/mariadb/repositories/
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.2/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+EOF
+df -h
+du -sh /var/lib/mysql
+cp /etc/my.cnf /etc/my.cnf-$(date +mysql_dumpd.sql.%Y%m%d.%H%M%S.gz)
+mysqldump -uroot -p$(grep -shoP "(?<=\sPASSWORD\=\')\w+"  /usr/local/vesta/conf/mysql.conf) --verbose --add-drop-table --all-databases | gzip > $(date +mysql_dumpd.sql.%Y%m%d.%H%M%S.gz);yum clean all;yum install install MariaDB-server MariaDB-client;systemctl restart mariadb;mysql_upgrade;mysql -uroot -p$(grep -shoP "(?<=\sPASSWORD\=\')\w+"  /usr/local/vesta/conf/mysql.conf);mysql_upgrade;mysql -uroot -p$(grep -shoP "(?<=\sPASSWORD\=\')\w+"  /usr/local/vesta/conf/mysql.conf)

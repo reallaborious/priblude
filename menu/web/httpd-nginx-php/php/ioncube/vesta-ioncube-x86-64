@@ -1,0 +1,12 @@
+wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+php -v
+tar xf ioncube_loaders_lin_x86.tar.gz
+rm ioncube_loaders_lin_x86.tar.gz
+grep -i zend /etc/php.ini
+grep -i zend /etc/php.d/*.ini
+mkdir /usr/local/ioncube
+#cat > /etc/php.d/ioncube.ini
+#zend_extension = /usr/local/ioncube/ioncube_loader_lin_ .so
+#zend_extension_ts = /usr/local/ioncube/ioncube_loader_lin_ _ts.so
+
+cp ioncube/ioncube_loader_lin_ /usr/local/ioncube/

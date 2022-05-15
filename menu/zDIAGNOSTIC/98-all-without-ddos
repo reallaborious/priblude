@@ -1,0 +1,5 @@
+df -h|egrep --color=always '(100% (\/[A-Za-z]*)+$|$)';df -i|egrep --color=always '100% (\/[A-Za-z]*)+$';
+find /etc/ -maxdepth 1 \( -name "*-release" -o -name debian_version \) -type f -exec egrep -H --color=always '[0-9](\.[0-9])*' {} \;;free -m
+tac /var/log/messages /var/log/syslog|head -n 10000|grep -m4 'Out of mem'
+uptime;grep model\ name /proc/cpuinfo|uniq;grep -c processor /proc/cpuinfo
+

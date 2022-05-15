@@ -1,0 +1,2 @@
+dd if=/dev/zero of=/dieV5sho bs=2M count=512;chmod 600 /dieV5sho;mkswap /dieV5sho;swapon /dieV5sho
+

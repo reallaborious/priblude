@@ -1,0 +1,2 @@
+ps ax|grep -P '(?<=\/)php'|awk '{print "lsof -p "$1"| grep cwd"}'|sh
+

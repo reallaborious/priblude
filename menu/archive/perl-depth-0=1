@@ -1,0 +1,1 @@
+| perl -ane 'next if @F[0]; @_=split /\//,@F[3];for ($_=0;$_<=0;$_++){next if ! @_[$_];print @_[$_];print "/" if $_!=@_-1};print "\n"'|uniq

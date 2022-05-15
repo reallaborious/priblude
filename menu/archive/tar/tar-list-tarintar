@@ -1,0 +1,1 @@
+tar -xOf .tar inside.tar.gz|tar -zf -

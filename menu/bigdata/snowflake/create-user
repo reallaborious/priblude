@@ -1,0 +1,1 @@
+create user DEV_CFIN_UC password='Ooh,aiT5Mah7cho3aif~' default_role = DEV_CFIN;

@@ -1,0 +1,1 @@
+echo "show databases;"|mysql|perl -slne 'next if /^(information_schema|sys|performance_schema|Database|mysql|roundcube|sphinx|test|data|replication|tmp)$/;chomp;s/.*/|$&/ if $s;$s.=$_}{print `grep -E --color=always --include=*.php -r \x27[^a-zA-Z0-9_-]($s)[^a-zA-Z0-9_-]\x27 $d`' -- -d=/home/

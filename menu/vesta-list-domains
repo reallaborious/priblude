@@ -1,0 +1,1 @@
+v-list-users|perl -ane 'next if $.<3;print "$F[0] $_" foreach `v-list-web-domains $F[0]|perl -ne \x27print if \$.>2\x27`' 

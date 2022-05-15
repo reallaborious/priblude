@@ -1,0 +1,1 @@
+htpasswd -cm /etc/munin/munin-htpasswd admin

@@ -1,0 +1,1 @@
+dom|perl -alne 'print @F[0]." www.".@F[0] if @F[0] !~ /Domain/'|xargs

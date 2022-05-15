@@ -1,0 +1,1 @@
+rsync -aIv --remove-source-files 

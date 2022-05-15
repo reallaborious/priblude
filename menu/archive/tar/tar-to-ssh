@@ -1,0 +1,1 @@
+tar zcvf - /dir | ssh root@ "cat > f"

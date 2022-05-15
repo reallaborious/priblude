@@ -1,0 +1,2 @@
+#/etc/cron.d/directadmin_cron replace appropriate string with:
+* * * * * root if [ "`ps ax | grep -v grep | grep -c dataskq`" -eq 0 ]; then nice -n 19 ionice -c 3 /usr/local/directadmin/dataskq; fi;

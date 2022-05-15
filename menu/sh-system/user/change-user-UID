@@ -1,0 +1,2 @@
+#it changes UID for username to 1111, -o - to ignore UID dublication.
+usermod -o -u 1111 username

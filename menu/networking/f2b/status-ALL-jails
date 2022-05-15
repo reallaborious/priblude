@@ -1,0 +1,1 @@
+fail2ban-client status|perl -lne 'next if ! /\sJail list:\s/;s/^.*\slist:\s+//;@_=split /,\s+/;print `fail2ban-client status $_` foreach @_'
