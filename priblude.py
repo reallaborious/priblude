@@ -10,7 +10,19 @@ import xerox
 menu_dir='/home/nikto/projects/priblude/menu'
 p='' #hover flag
 
-def menu_constructor(m,d): #m - menu object, d - directory to observe, full path
+def menu_constructor(m,d):
+	"""
+	Construct a hierarchical menu for a given directory structure.
+	The function recursively explores the directories and files within the specified directory 'd', adding them to the menu 'm' as submenus for directories and actions for files. Actions are connected to a trigger function 'read_file'.
+
+	Parameters:
+    m (QMenu): The parent menu instance to which the submenus or actions will be added.
+    d (str): The full path to the directory which needs to be observed to construct the menu.
+
+	Returns:
+    None: The function modifies the 'm' menu in-place, adding submenus and actions based on the directory content.
+	"""
+
 	dirs = os.listdir(d)
 	files = [ i for i in dirs if os.path.isfile(d+'/'+i) ]
 	files.sort()
@@ -25,40 +37,27 @@ def menu_constructor(m,d): #m - menu object, d - directory to observe, full path
 			m.addMenu(s)
 		else:
 			a=QAction(i,m)
-			a.triggered.connect(lambda check,value=f: t(value))
+			a.triggered.connect(lambda check,value=f: read_file(value))
 			# a.hovered.connect(lambda value=f: hover(value))
+			# It was an experiment with adding notes on hover. The experiment has failed, but let this string be here for posterity.
 			m.addAction(a)
 
-def t(value):
-#  sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-#  sock.sendto(bytes(value, 'UTF-8'), (UDP_IP, UDP_PORT))
-	#print('file name '+value+' code '+ str(os.system('xclip -i < '+value)))
+def read_file(value):
+	"""
+	Read and print the contents of a specified file, copying its content to the clipboard.
+	This function opens the file at the specified path in read mode, reads the content, prints it to the console, and then copies the content to the system clipboard (excluding the last character for formatting purposes).
+
+	Parameters:
+    value (str): The full path to the file that needs to be read.
+
+	Returns:
+    None: The function prints the contents of the file to the console and copies the contents to the clipboard.
+	"""
 	with open(value, 'r',encoding='utf-8') as file:
 		lines=file.read()
 		print(lines)
 		lines.replace('\r','\n')
 		xerox.copy(lines[:-1],xsel=True)
-			
-	#with open(value, 'r', encoding='utf-8') as g:
-		#lines=[]
-		#for line in g:
-			#lines.append(line)
-		#print(lines)
-		
-		#if len(lines)>1:
-			#for i in range(len(lines)-1):
-				#for j in range(0,int(len(lines[i])),10):
-					#keyboard.write(lines[i][j:j+10])
-					#time.sleep(0.01)
-				#keyboard.write('\n')
-				##time.sleep(len(lines[i])*0.01)
-		#if len(lines)>0: keyboard.write(lines[-1])
-		#else: print('empty file '+value)
-# def hover(value):
-# 	global p
-# 	if value != p:
-# 		print(value.encode('utf-8'))
-# 		p=value
 
 class RightClickMenu(QMenu):
 	def __init__(self, parent=None):
