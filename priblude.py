@@ -4,16 +4,12 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QApplication, QMenu, QSystemTrayIcon, QAction
 import socket,os,time
 import xerox
-#import keyboard
+import logging
 
-#menu_dir='g:/_BACKUP/Dropbox/Projects/preblude/menu'
-menu_dir='/home/nikto/projects/priblude/menu'
-p='' #hover flag
 
 def menu_constructor(m,d):
 	"""
 	Construct a hierarchical menu for a given directory structure.
-	The function recursively explores the directories and files within the specified directory 'd', adding them to the menu 'm' as submenus for directories and actions for files. Actions are connected to a trigger function 'read_file'.
 
 	Parameters:
     m (QMenu): The parent menu instance to which the submenus or actions will be added.
@@ -21,6 +17,8 @@ def menu_constructor(m,d):
 
 	Returns:
     None: The function modifies the 'm' menu in-place, adding submenus and actions based on the directory content.
+
+	The function recursively explores the directories and files within the specified directory 'd', adding them to the menu 'm' as submenus for directories and actions for files. Actions are connected to a trigger function 'read_file'.
 	"""
 
 	dirs = os.listdir(d)
@@ -45,98 +43,174 @@ def menu_constructor(m,d):
 def read_file(value):
 	"""
 	Read and print the contents of a specified file, copying its content to the clipboard.
-	This function opens the file at the specified path in read mode, reads the content, prints it to the console, and then copies the content to the system clipboard (excluding the last character for formatting purposes).
 
 	Parameters:
     value (str): The full path to the file that needs to be read.
 
 	Returns:
     None: The function prints the contents of the file to the console and copies the contents to the clipboard.
+
+	This function opens the file at the specified path in read mode, reads the content, prints it to the console, and then copies the content to the system clipboard (excluding the last character for formatting purposes).
 	"""
 	with open(value, 'r',encoding='utf-8') as file:
 		lines=file.read()
-		print(lines)
+		logging.info(lines)
 		lines.replace('\r','\n')
 		xerox.copy(lines[:-1],xsel=True)
 
 class RightClickMenu(QMenu):
-	def __init__(self, parent=None):
+	"""
+    Initializes and constructs a custom right-click context menu.
+
+    This class extends QMenu to create a context menu that initializes by reading a directory 
+    structure from a predefined path and using it to build the menu options.
+
+    Parameters:
+    - parent (QWidget, optional): The parent widget for this menu. Default is None.
+ 
+    Returns:
+    - None: The constructor initializes the menu, it does not return any value.
+
+    Upon initialization, it constructs the context menu by reading from 'menu_dir' (a global variable 
+    that should hold the directory path), calls the 'menu_constructor' function to populate the menu,
+    and prints the menu construction process to the console.
+    """
+	
+	def __init__(self, menu_dir, parent=None):
 		QMenu.__init__(self, '', parent)
 		#self.setStyleSheet("{hith: 200px}")
-		print("Begin to construct menu")
+		logging.debug("Begin to construct menu")
 		menu_constructor(self,menu_dir)
-		print("Menu construction finished")
+		logging.debug("Menu construction finished")
 		
 class SystemTrayIcon(QSystemTrayIcon):
-	def __init__(self, parent=None):
+	"""
+    System Tray Icon class for creating and managing a system tray application.
+
+    This class extends QSystemTrayIcon to provide functionality specific to the application, such as
+    setting custom icons, handling various tray events, and setting up a context menu from the RightClickMenu class.
+
+    Parameters:
+    - parent (QWidget, optional): The parent widget of the tray icon. Default is None.
+
+    Upon instantiation, this class sets up the icon, initializes the right-click context menu, and connects signal
+    handlers to manage tray icon activations such as double clicks and context menu invocation.
+    """
+
+	def __init__(self, menu_dir, parent=None):
+		"""
+		Initializes a new instance of the SystemTrayIcon class, configuring the icon and the right-click menu.
+
+		Parameters:
+		- parent (QWidget, optional): The parent widget of the tray icon. Default is None.
+		- menu_dir (string): The directory where the menu files are stored
+
+		During initialization, an icon is set, a custom right-click menu is initialized, and connections 
+		are made to handle tray icon activation events. Prints to the console document the steps of the setting process.
+		"""
 		QSystemTrayIcon.__init__(self, parent)
 		self.setIcon(QtGui.QIcon("gnomeradio.xpm"))
 
-		self.right_menu = RightClickMenu()
-		#self.right_menu = LeftClickMenu()
+		self.right_menu = RightClickMenu(menu_dir=menu_dir)
 		self.setContextMenu(self.right_menu)
-		print("Set context menu")
+		logging.debug("Set context menu")
 
 		self.activated.connect(self.onTrayIconActivated)
-		print("onTray activated")
-# WHEEL EVENT EXAMPLE
-		#class SystrayWheelEventObject(QtCore.QObject):
-			#def eventFilter(self, object, event):
-				#if type(event)==QtGui.QWheelEvent:
-					#if event.delta() > 0:
-						#sendudp("s51153\n")
-					#else:
-						#sendudp("s53201\n")
-					#event.accept()
-					#return True
-				#return False
+		logging.debug("onTray activated")
 
-		#self.eventObj=SystrayWheelEventObject()
-		#self.installEventFilter(self.eventObj)
-	
-#	QSystemTrayIcon.Trigger.activate.connect(self.right_menu.exec(QtGui.QCursor.pos()))
 	def s(self):
-		#print('hotkey')
+		"""
+        Show the custom context menu at the current cursor position.
+        """
 		self.right_menu.exec(QtGui.QCursor.pos())
 	
 	def onTrayIconActivated(self, reason):
+		"""
+        Handle various tray icon activation reasons.
+
+        Parameters:
+        - reason (QSystemTrayIcon.ActivationReason): Enum value describing the reason the tray icon was activated.
+
+        Supported activation reasons include DoubleClick, Unknown, Context, MiddleClick, and Trigger. 
+        Outputs a message to the console depending on the reason and potentially shows the context menu.
+        """
 		if reason == QSystemTrayIcon.DoubleClick:
-			print("doubleclick")
+			logging.debug("doubleclick")
 		if reason == QSystemTrayIcon.Unknown:
-			print("Unknown")
+			logging.debug("Unknown")
 		if reason == QSystemTrayIcon.Context:
-			print("Context")
+			logging.debug("Context")
 		if reason == QSystemTrayIcon.MiddleClick:
-			print("MiddleClick")
+			logging.debug("MiddleClick")
 		if reason == QSystemTrayIcon.Trigger:
-			print("Trigger")
+			logging.debug("Trigger")
 			self.right_menu.exec(QtGui.QCursor.pos())
 
 	def welcome(self):
+		"""
+        Show a welcome message to the user using the system tray notification.
+        """
 		self.showMessage("Hello", "I should be aware of both buttons")
 
 	def show(self):
+		"""
+        Show the tray icon and immediately try to execute the context menu.
+        
+        This function also prints operation messages to the console to track the process.
+        """
 		QSystemTrayIcon.show(self)
-		print("Begin")
+		logging.debug("Begin")
 		self.right_menu.exec(QtGui.QCursor.pos())
 
-		print("end")
-
-#		QSystemTrayIcon.right_menu.popup()
-		#QtCore.QTimer.singleShot(100, self.welcome)
+		logging.debug("end")
 
 
 
 if __name__ == "__main__":
-	app = QApplication([])
-	tray = SystemTrayIcon()
-	print("SystemTrayIcon finished")
-	tray.show()
-	
-	#keyboard.add_hotkey('alt+/', tray.s, args=(), suppress=False,timeout=0, trigger_on_release=True)
-	#keyboard.add_hotkey('ctrl+alt+;',lambda: app.exit(0), args=(), suppress=False,timeout=0, trigger_on_release=True)
-	#keyboard.hook(lambda x: print(x))
-	#app.exec_()
-	
-	#tray.s
-	#app.exit(0)
+	import click
+
+	@click.command(help='''
+Creates an interactive system tray icon that generates context menus on-the-fly from a specified directory, offering functionalities corresponding to files and subdirectories found therein.
+
+menu_dir	The directory containing the system tray menu configuration. If not specified, it defaults to './menu' relative to the current working directory.
+''')
+	@click.argument('menu_dir', required=False, default=None)
+	@click.option('-v','--verbose', is_flag=True, default=False, help="Enable verbose mode.")
+	@click.option('-q','--quiet', is_flag=True, default=False, help="Enable quiet mode (only error messages)")
+	def run_cli(menu_dir,verbose,quiet):
+		"""
+		This function sets up a system tray application. It allows for specifying a directory for menu configurations; if not provided, it defaults to the 'menu' subdirectory in the current working directory. The function checks if the provided or default directory exists and exits if it does not. It also supports a verbose mode for additional console output.
+
+		Parameters:
+		- menu_dir (str, optional): The directory containing the system tray menu configuration. If not specified, it defaults to './menu' relative to the current working directory.
+		- verbose (bool): If set to True, enables verbose output in the console to trace the operations being performed.
+
+		Raises:
+		- SystemExit: If the menu directory does not exist, the application will exit with an error message.
+
+		Usage:
+		- Without any arguments, the script attempts to use the default menu directory './menu' in the current working directory.
+		- If --verbose is used, additional debug information will be printed during execution.
+		"""
+		if verbose and quiet:
+			raise click.UsageError("--verbose and --quiet options cannot be used together.")
+		elif verbose: log_level=logging.DEBUG
+		elif quiet: log_level=logging.ERROR
+		else: log_level=logging.INFO
+		logging.basicConfig(level=log_level, format='%(asctime)s %(levelname)s: %(message)s')
+		logging.debug('Verbose mode is enabled.')
+		
+		if not menu_dir:
+			menu_dir = os.getcwd() + "/menu"
+			logging.debug(f"No menu_dir set, trying to get {menu_dir}")
+		if not os.path.isdir(menu_dir):
+			logging.error(f"{menu_dir} doesn't exist, exiting...")
+			raise
+		else:
+			logging.debug(f"{menu_dir} exists.")
+		app = QApplication([])
+		tray = SystemTrayIcon(menu_dir=menu_dir)
+		logging.debug("SystemTrayIcon finished")
+		tray.show()
+
+	run_cli()
