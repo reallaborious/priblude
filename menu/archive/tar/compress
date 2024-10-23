@@ -1,0 +1,1 @@
+tar -cvzf files.tar.gz ~/files
