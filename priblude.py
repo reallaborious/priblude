@@ -164,6 +164,26 @@ class SystemTrayIcon(QSystemTrayIcon):
 
 		logging.debug("end")
 
+def show_menu(menu_dir:str):
+	"""
+	Initializes and displays a system tray icon application.
+
+	This function creates a QApplication, sets up a system tray icon using the provided
+	menu directory, and then makes the tray icon visible on the system tray.
+
+	Args:
+	    menu_dir (str): The directory path that contains resources or configurations
+	                    necessary for constructing the system tray menu.
+
+	Note:
+	    This function specifically requires that a GUI framework like PyQt5 is properly
+	    installed and configured in the environment where this code runs, as it uses
+	    QApplication and SystemTrayIcon which are components of the PyQt5 library.
+	"""
+	app = QApplication([])
+	tray = SystemTrayIcon(menu_dir=menu_dir)
+	logging.debug("SystemTrayIcon finished")
+	tray.show()
 
 
 if __name__ == "__main__":
@@ -208,9 +228,6 @@ menu_dir	The directory containing the system tray menu configuration. If not spe
 			raise
 		else:
 			logging.debug(f"{menu_dir} exists.")
-		app = QApplication([])
-		tray = SystemTrayIcon(menu_dir=menu_dir)
-		logging.debug("SystemTrayIcon finished")
-		tray.show()
+		show_menu(menu_dir)
 
 	run_cli()
