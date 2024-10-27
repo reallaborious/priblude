@@ -1,0 +1,1 @@
+find . -type f -mtime +365 -printf '%s\n' | awk '{total=total+$1}END{print total/1048576}'

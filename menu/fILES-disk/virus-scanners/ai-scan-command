@@ -1,0 +1,2 @@
+php ai-bolit/ai-bolit.php --scan=php,php5,pht,phtml,pl,cgi,htaccess,suspected,tpl --size=900K --path=/var/www/ --report=/root/f.html
+

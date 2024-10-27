@@ -1,0 +1,2 @@
+#ls -il
+find -inum _
