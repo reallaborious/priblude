@@ -1,0 +1,2 @@
+df -h|grep --color=always -P '((9\d|100)%\s+(\/\w+)+$|$)';df -i|grep --color=always -P '(9\d|100)%\s+(\/\w+)+$';
+

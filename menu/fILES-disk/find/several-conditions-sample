@@ -1,0 +1,2 @@
+#it doesnt't work without brackets
+find -type f \( -iname 1 -o -iname 2 \)

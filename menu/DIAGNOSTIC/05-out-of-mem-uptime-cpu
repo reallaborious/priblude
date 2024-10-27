@@ -1,0 +1,3 @@
+tac /var/log/messages /var/log/syslog|head -n 100000|grep -m4 'Out of mem'
+uptime;grep model\ name /proc/cpuinfo|uniq;grep -c processor /proc/cpuinfo
+

@@ -1,0 +1,1 @@
+find /var/lib/mysql/ -type f -exec ls -lh {} \;|sort -hk5|tail
