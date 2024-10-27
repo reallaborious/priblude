@@ -1,0 +1,1 @@
+gitlab-rake gitlab:check #other checks: https://docs.gitlab.com/ee/administration/raketasks/maintenance.html

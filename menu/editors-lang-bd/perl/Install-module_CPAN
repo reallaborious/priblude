@@ -1,0 +1,3 @@
+#root needed. To install module: install XML::Simple (xml lib, for example)
+perl -MCPAN -e shell
+

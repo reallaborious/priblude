@@ -1,0 +1,1 @@
+ansible all -i 1.1.1.1:2222, -s -m user -a "name=NaMe update_password=always password={{ 'PaSsWoRd' | password_hash('sha512') }}"

@@ -1,0 +1,2 @@
+# n - for numbers (day, year), M - months (Jan,Feb)
+sort -k5n -k2M -k3n

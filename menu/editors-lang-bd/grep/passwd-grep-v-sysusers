@@ -1,0 +1,1 @@
+grep -vE '^(systemd|uuidd|mysql|sshd|postfix|mail|bin|daemon|root|www-data|sys|sync|games|man|news|news|backup|nobody|lp|rpm|n?uucp|_apt|memcache)' /etc/passwd
