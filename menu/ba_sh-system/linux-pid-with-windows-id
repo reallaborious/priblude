@@ -1,0 +1,1 @@
+xprop -id 0x0000000a | grep _NET_WM_PID #wmctrl -l

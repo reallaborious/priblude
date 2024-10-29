@@ -1,0 +1,2 @@
+tac /var/log/messages /var/log/messages.1 /var/log/syslog /var/log/syslog.1 2>/dev/null | perl -alne 'print if $F[4]!~/^gsd-media-keys/' | grep -m1 -A1000 'Out of mem'|perl -lne '$f=1 if /rss\ +nr_ptes\ +swapents\ +oom_score_adj\ +name$/;exit if $f;s/(?<=\[)\s+//g;@_=split;if(@_[5]=~/\[\d+\]/ and @_[13]=~/^php-fpm$/) { $s+=@_[8];++$h;print } ;END {print int($s/1024)."Mb php-fpm count:".$h}'
+

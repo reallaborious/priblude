@@ -1,0 +1,2 @@
+ps o size,etime,cmd ax| grep -E '([^i]httpd|php)' |grep -vE '(grep)' | sort -n | awk '{s+= $1; c+=1; print $0} END {print "total: "s/1024 " MB, count: "c}'
+

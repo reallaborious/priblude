@@ -1,0 +1,2 @@
+:set-window-option xterm-keys on
+:set -g status off

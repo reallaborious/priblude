@@ -1,0 +1,1 @@
+mount |perl -alne ' print "tune2fs -l ".@F[0] if @F[2] =~ /^\/$/'|sh|grep 'Filesystem created:'

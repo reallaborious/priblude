@@ -1,0 +1,1 @@
+perl -alne 'if(/^=+$/){$f=1;next};print "$F[3] $n" if @F[2]=~/^Runtime:$/ && @F[0]=~/`date +%Y-%m-%d`/;next if $f!=1;$n=$_;$f=0' /var/log/hestia/backup.log|sort -n

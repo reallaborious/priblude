@@ -1,0 +1,2 @@
+tac /var/log/messages /var/log/messages.1 /var/log/syslog /var/log/syslog.1 2>/dev/null | perl -alne 'print if $F[4]!~/^gsd-media-keys/' | grep -m1 -A1000 'Out of mem'|perl -lne 'exit if /rss\ +nr_ptes\ +(nr_pmds\ +)?swapents\ +oom_score_adj\ +name$/;s/(?<=\[)\s+//g;@_=split;if(@_[5]=~/\[[\d\.]+\]/ and @_[@_-1]=~/(^httpd$|^apache2$|^php$|^php-fpm$)/) { $s+=@_[8];++$h if @_[@_-1]=~/^httpd$|^apache2$/;++$p if @_[@_-1]=~/^php$/;++$fpm if @_[@_-1]=~/^php-fpm$/;print } ;END {print int($s/1024)."Mb httpd:".$h." php:".$p." php-fpm:".$fpm}'
+

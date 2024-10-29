@@ -1,0 +1,2 @@
+tac /var/log/messages /var/log/messages.1 /var/log/syslog /var/log/syslog.1 2>/dev/null | perl -alne 'print if $F[4]!~/^gsd-media-keys/' | grep -m1 -A1000 'Out of mem'|perl -lnpe 'exit if $f;$f=1 if /rss\ +nr_ptes\ +(nr_pmds\ +)?swapents\ +oom_score_adj\ +name$/;exit if $f'
+

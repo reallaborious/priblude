@@ -1,0 +1,1 @@
+strace -p $(ps ax --sort -%cpu|grep -E '([^i]httpd|php)'|awk '{print $1}'|xargs |sed 's/\ /,/g')  2>&1

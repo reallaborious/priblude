@@ -1,0 +1,1 @@
+strace -p $(ps ax --sort -%cpu|grep -E '([^i]httpd|php)' |head -1|awk '{print $1}') -e open,connect 2>&1 |grep .php

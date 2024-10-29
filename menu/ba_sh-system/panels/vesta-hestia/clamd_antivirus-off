@@ -1,0 +1,12 @@
+grep -Eq "ANTIVIRUS_SYSTEM=[\"'](clamd|clamav)[\"']" /usr/local/vesta/conf/vesta.conf && sed -E -i.bak-$(date +%Y%m%d.%H%M%S) "s/ANTIVIRUS_SYSTEM=[\"'](clamd|clamav)[\"']/ANTIVIRUS_SYSTEM=''/" /usr/local/vesta/conf/vesta.conf || echo -e "\e[31mNo string ANTIVIRUS_SYSTEM=(clamd|clamav) in vesta.conf\e[0m"
+grep -Eq "ANTISPAM_SYSTEM=[\"'][[:alpha:]]+[\"']" /usr/local/vesta/conf/vesta.conf && sed -E -i.bak-$(date +%Y%m%d.%H%M%S) "s/ANTISPAM_SYSTEM=[\"'][[:alpha:]]+[\"']/ANTISPAM_SYSTEM=''/" /usr/local/vesta/conf/vesta.conf || echo -e "\e[31mNo string ANTISPAM_SYSTEM=[a-z] in vesta.conf\e[0m"
+sed -ie  's/^[^#].*\/usr\/share\/clamav\/freshclam-sleep$/#&/' /etc/cron.d/clamav-update
+chkconfig clamd off
+chkconfig spamassassin off
+service clamd stop
+service spamassassin stop
+service vesta restart
+chkconfig 2>/dev/null|grep -Ei 'spam|clam';[ $? -eq 0 ] && echo -e "\e[41mclam|spam IS in chkconfig\e[0m" || echo -e "\e[32mclam|spam is not in chkconfig\e[0m"
+ps ax|grep -v grep |grep -Ei 'spam|clam';[ $? -eq 0 ] && echo -e "\e[41mclam|spam IS WORKING NOW\e[0m" || echo -e "\e[32mclam|spam is not in workig now.\e[0m"
+
+

@@ -1,0 +1,1 @@
+for i in $(ls -t -1 /var/log/syslog*.gz /var/log/messages*.gz 2>/dev/null) ;do zcat $i| tac | perl -alne 'print if $F[4]!~/^gsd-media-keys/' | grep -am1 -A1000 'Out of mem' |perl -lnpe 'exit if $f;$f=1 if /rss\ +nr_ptes\ +(nr_pmds\ +)?swapents\ +oom_score_adj\ +name$/;exit if $f' && break;done

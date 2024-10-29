@@ -1,0 +1,5 @@
+cd /usr/local/directadmin/custombuild
+./build update
+./build set exim yes
+./build exim
+#https://help.directadmin.com/item.php?id=125 
